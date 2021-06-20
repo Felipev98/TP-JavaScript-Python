@@ -1,5 +1,51 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-<h3>car</h3>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box-element">
+            <a href="{% url 'store' %}" class="btn btn-success"> &#x2190; Continuar compra</a>
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                    <th><h5>Productos: <strong>{{order.get_car_items}}</strong></h5></th>
+                    <th><h5>Total: <strong>{{order.get_car_total | floatformat:2}}$</strong></h5></th>
+                    <th>
+                        <a class="btn btn-primary" href="{% url 'checkout' %}">Chekout</a>
+                    </th>
+
+                </tr>
+            </table>
+        </div>
+        <div class="box-element">
+            <div class="cart-row">
+                <div style="flex:2"></div>
+                <div style="flex:2">Producto</div>
+                <div style="flex:1">Precio</div>
+                <div style="flex:1">Cantidad</div>
+                <div style="flex:1"><strong>Total</strong></div>
+
+            </div>
+            {% for Item in Items %}
+            <div class="cart-row">
+                <div style="flex:2"> <img class="row-image" src="{{Item.product.img.url}}" alt=""> </div>
+                <div style="flex:2">{{Item.product.name}}</div>
+                <div style="flex:1">{{Item.product.price | floatformat:2}}$</div>
+                <div style="flex:1"></div>
+                <div style="flex:1">
+                <p class="quantity">{{Item.quantity}}</p>
+                <div class="quantity">
+                    <img src="{% static 'img/flecha-arriba.png' %}" class="chg-quantity" alt="">
+                    <img src="{% static 'img/flecha-abajo.png' %}" class="chg-quantity" alt="">
+
+                </div>
+                </div>
+                <div style="flex:1">{{Item.get_total}}$</div>
+                
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock content %}
