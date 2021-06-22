@@ -11,22 +11,22 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 	<script type="text/javascript">
 		let user = '{{request.user}}'
-		function getCookie(name){
-			let cookieValue =null;
-			if(document.cookie && document.cookie !== ''){
-				let cookies =document.cookie.split(';');
-				for (let i = 0; i < cookies.length; i++) {
-					let cookie = cookies[i].trim();
-					if(cookie.substring(0,name.length + 1) === (name + '=')){
-						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-						break;
+			function getCookie(name){
+				let cookieValue =null;
+				if(document.cookie && document.cookie !== ''){
+					let cookies =document.cookie.split(';');
+					for (let i = 0; i < cookies.length; i++) {
+						let cookie = cookies[i].trim();
+						if(cookie.substring(0,name.length + 1) === (name + '=')){
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+							break;
+						}
+						
 					}
-					
 				}
+				return cookieValue;
 			}
-			return cookieValue;
-		}
-		let csrftoken = getCookie('csrftoken');
+			let csrftoken = getCookie('csrftoken');
 
 	</script>
 
@@ -52,7 +52,8 @@
 	     	<a href="{% url 'car' %}">
 	    		<img  id="cart-icon" src="{% static 'img/car.png' %}">
 	    	</a>
-	    	<p id="cart-total">0</p>
+	    	<p id="cart-total">{{carItems}}</p>
+			<p>{{categories.name}}</p>
 
 	    </div>
 	  </div>

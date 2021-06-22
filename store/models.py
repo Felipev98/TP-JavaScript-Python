@@ -8,19 +8,18 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.name
-
-class Product(models.Model):
-    name= models.CharField(max_length=200,null = True)
-    price = models.FloatField()
-    img = models.ImageField(null= True,blank=True)
+class Category(models.Model):
+    category =models.CharField(max_length=255,default="Comidas")
 
     def __str__(self):
+        return self.category
+class Product(models.Model):
+    name= models.CharField(max_length=200,null = True)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
+    img = models.ImageField(null= True,blank=True)
+    category = models.CharField(max_length=255,default="Comidas")
+    def __str__(self):
         return self.name
-
-
-   
- 
-
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete = models.SET_NULL,blank=True,null=True)
     date_orderd = models.DateTimeField(auto_now_add= True)
