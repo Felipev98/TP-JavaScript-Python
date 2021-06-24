@@ -34,8 +34,7 @@ def car(request):
         Items = []
         order = {'get_car_total':0,'get_car_items':0 }
         carItems = order.get_car_items
-        carItems = order.get_car_items
-
+        carItems = order['get_car_items']
 
     context = {'Items': Items, 'order': order, 'carItems':carItems }
     return render(request,'store/car.html',context)
@@ -43,6 +42,12 @@ def car(request):
 def checkout(request):
     context = {}
     return render(request,'store/checkout.html',context)
+def contacto(request):
+    context = {}
+    return render(request,'store/contacto.html',context)
+def acerca(request):
+    context = {}
+    return render(request,'store/acerca.html',context)        
 
 def updateItem(request):
     data = json.loads(request.body)
