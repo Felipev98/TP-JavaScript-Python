@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import JsonResponse
 import json
 from .models import *
+from .forms import *
+from django.contrib.auth import authenticate, login
 
 def store(request):
     if request.user.is_authenticated:
@@ -47,7 +49,61 @@ def contacto(request):
     return render(request,'store/contacto.html',context)
 def acerca(request):
     context = {}
-    return render(request,'store/acerca.html',context)        
+    return render(request,'store/acerca.html',context)       
+def agregar(request):
+    data ={
+        'form': ProductForm()
+    }
+    if request.method == 'POST':
+        formulario = ProductForm(data= request.POST,files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Guardado correctamente"
+        else:
+             data["form"] = formulario   
+    return render(request, 'CRUD/agregar.html',data)
+
+def modificar(request,id):
+    productoss = get_object_or_404(Product, id = id)
+    data ={
+        'form': ProductForm(instance=productoss)
+    }
+
+    if request.method == 'POST':
+        formulario = ProductForm(data = request.POST,instance=productoss,files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="listar")
+        data["form"] = formulario
+    return render(request,'CRUD/modificar.html',data)
+
+def eliminar(request,id):
+    producto = get_object_or_404(Product,id=id)
+    producto.delete()
+    return redirect(to="listar")
+
+def listar(request):
+    productosss = Product.objects.all()
+
+    data ={
+        'productos':productosss
+    }
+def registro(request):
+    
+    data ={
+        'form': CustomUserCreationForm()
+    }
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data = request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request,user)
+            return redirect(to="/")
+        data["form"] = formulario     
+    return render(request,'registration/registro.html',data)
+
+    return render(request,'CRUD/listar.html',data)
 
 def updateItem(request):
     data = json.loads(request.body)

@@ -52,9 +52,26 @@
 		  <li class="nav-item">
 			<a class="nav-link" href="{% url 'contacto' %}">CONTACTO</a>
 		  </li>
-	    <div class="form-inline my-2 my-lg-0">
-	     	<a href="#"class="btn btn-success">Ingresar</a>
-	     	
+		  <li class="nav-item">
+			<a class="nav-link" href="{% url 'agregar' %}">Agregar producto</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="{% url 'listar' %}">Lista de productos</a>
+		  </li>
+		  {% if user.is_authenticated %}
+		  <li class="nav-item">
+			<a class="nav-link" href="{% url 'logout' %}">Cerrar sesión </a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">{{user.username}}</a>
+		  </li>
+		  {% else %}
+		  <div class="form-inline my-2 my-lg-0">
+			<a href="{% url 'login' %}"class="btn btn-success">Ingresar</a>
+		</div>
+
+		  {% endif %}
+	    <div class="form-inline my-2 my-lg-0">	     	
 	     	<a href="{% url 'car' %}">
 	    		<img  id="cart-icon" src="{% static 'img/car.png' %}">
 	    	</a>
