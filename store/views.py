@@ -88,6 +88,8 @@ def listar(request):
     data ={
         'productos':productosss
     }
+    return render(request,'CRUD/listar.html',data)
+
 def registro(request):
     
     data ={
@@ -103,7 +105,6 @@ def registro(request):
         data["form"] = formulario     
     return render(request,'registration/registro.html',data)
 
-    return render(request,'CRUD/listar.html',data)
 
 def updateItem(request):
     data = json.loads(request.body)
