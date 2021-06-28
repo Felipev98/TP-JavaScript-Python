@@ -52,12 +52,16 @@
 		  <li class="nav-item">
 			<a class="nav-link" href="{% url 'contacto' %}">CONTACTO</a>
 		  </li>
+		  {% if perms.store.agregar %}
 		  <li class="nav-item">
 			<a class="nav-link" href="{% url 'agregar' %}">Agregar producto</a>
 		  </li>
+		  {% endif %}
+		  {% if perms.store.listar %}
 		  <li class="nav-item">
 			<a class="nav-link" href="{% url 'listar' %}">Lista de productos</a>
 		  </li>
+		  {% endif %}
 		  {% if user.is_authenticated %}
 		  <li class="nav-item">
 			<a class="nav-link" href="{% url 'logout' %}">Cerrar sesión </a>

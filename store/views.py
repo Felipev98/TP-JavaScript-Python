@@ -4,6 +4,7 @@ import json
 from .models import *
 from .forms import *
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required,permission_required
 
 def store(request):
     if request.user.is_authenticated:
@@ -49,7 +50,8 @@ def contacto(request):
     return render(request,'store/contacto.html',context)
 def acerca(request):
     context = {}
-    return render(request,'store/acerca.html',context)       
+    return render(request,'store/acerca.html',context)
+@permission_required('store.agregar')           
 def agregar(request):
     data ={
         'form': ProductForm()
@@ -62,7 +64,7 @@ def agregar(request):
         else:
              data["form"] = formulario   
     return render(request, 'CRUD/agregar.html',data)
-
+@permission_required('store.modificar')           
 def modificar(request,id):
     productoss = get_object_or_404(Product, id = id)
     data ={
@@ -76,12 +78,12 @@ def modificar(request,id):
             return redirect(to="listar")
         data["form"] = formulario
     return render(request,'CRUD/modificar.html',data)
-
+@permission_required('store.eliminar')           
 def eliminar(request,id):
     producto = get_object_or_404(Product,id=id)
     producto.delete()
     return redirect(to="listar")
-
+@permission_required('store.listar')           
 def listar(request):
     productosss = Product.objects.all()
 

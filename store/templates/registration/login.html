@@ -17,6 +17,7 @@
                         <form action="" method="POST">
                             {% csrf_token %}
                             {{ form }}
+                            <a href="{% url 'registro' %}">Registro</a>
                             <input type="submit" placeholder="Ingresar">
 
                         </form>
