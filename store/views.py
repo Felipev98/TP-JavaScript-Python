@@ -21,10 +21,10 @@ def store(request):
     context = {'products':products, 'carItems': carItems}
     return render(request,'store/store.html',context)
 
-def category(request):
-    return {
-        'category': Category.objects.all()
-    }
+def category(request,cats):
+    category_foods = Product.objects.filter(category=cats)
+    return render(request, 'store/category.html',{'cats':cats,'category_foods':category_foods})
+
 
 def car(request):
     if request.user.is_authenticated:
@@ -41,6 +41,15 @@ def car(request):
 
     context = {'Items': Items, 'order': order, 'carItems':carItems }
     return render(request,'store/car.html',context)
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        search = Product.objects.filter(name__contains=searched)
+        return render(request,'store/search.html',{'searched':searched,'search':search})
+    else:
+        return render(request,'store/search.html')
+
 
 def checkout(request):
     context = {}

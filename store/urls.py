@@ -12,9 +12,8 @@ urlpatterns = [
     path('modificar/<id>/',views.modificar, name="modificar"),
     path('eliminar/<id>/',views.eliminar, name="eliminar"),
     path('listar/',views.listar, name="listar"),
-    path('registro/',views.registro, name="registro")
-
-
-
+    path('registro/',views.registro, name="registro"),
+    path('category/<str:cats>/',views.category, name='category'),
+    path('search/',views.search, name='search')
 
 ]

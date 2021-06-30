@@ -1,0 +1,28 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+<div>
+    <h2>Lista de productos: {{searched}}</h2>
+{% if searched %}
+    <div class="row">
+        {% for product in search %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{product.img.url}}" alt="">
+            <div class="box-element product">
+                <h6><strong>{{product.name}}</strong></h6>
+                <p>{{product.description}}</p>
+                <hr>
+                <button data-product={{product.id}} data-action="add" class="btn btn-warning add-btn update-car">Agregar al carrito</button>
+                <a href="#" class="btn btn-primary">Ver más</a>
+                <span>${{product.price | floatformat:2}}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+{% else %}
+<p>Lo sentimos, no tenemos ese producto</p>
+{% endif %}    
+{% endblock content %}
+
