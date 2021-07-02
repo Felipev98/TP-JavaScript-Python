@@ -17,6 +17,5 @@ class CustomUserCreationForm(UserCreationForm):
 
     def save(self, commit=False):
         user = super().save(commit=True)
-        # Creating the customer object
         Customer.objects.create(user=user, name=self.cleaned_data['username'], email=self.cleaned_data['email'])
         return user

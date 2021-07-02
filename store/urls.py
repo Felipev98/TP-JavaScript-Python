@@ -14,6 +14,8 @@ urlpatterns = [
     path('listar/',views.listar, name="listar"),
     path('registro/',views.registro, name="registro"),
     path('category/<str:cats>/',views.category, name='category'),
-    path('search/',views.search, name='search')
+    path('search/',views.search, name='search'),
+    path('product_details/<int:id>',views.product_details, name='product_details'),
+
 
 ]

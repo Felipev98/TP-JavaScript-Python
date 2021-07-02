@@ -8,7 +8,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<script type="text/javascript">
 		let user = '{{request.user}}'
 			function getCookie(name){
@@ -40,12 +40,8 @@
 	  </button>
 
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link" href="{% url 'store' %}">Store <span class="sr-only">(current)</span></a>
-	      </li>
-	 
-	    </ul>
+	    <ul class="navbar-nav mx-auto">
+
 		<li class="nav-item">
 			<a class="nav-link" href="{% url 'acerca' %}">ACERCA DE</a>
 		  </li>
@@ -96,8 +92,11 @@
 	    	</a>
 	    	<p id="cart-total">{{carItems}}</p>
 	    </div>
+	</ul>
+
 	  </div>
 	</nav>
+
 
      <div class="container">
             <br>

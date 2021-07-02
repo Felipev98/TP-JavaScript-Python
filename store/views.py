@@ -101,6 +101,20 @@ def listar(request):
     }
     return render(request,'CRUD/listar.html',data)
 
+def product_details(request,id):
+    if request.user.is_authenticated:
+            customer = request.user.customer 
+            order, created = Order.objects.get_or_create(customer=customer, complete=False )
+            Items = order.orderitem_set.all()
+            carItems = order.get_car_items
+    else:
+            Items = []
+            order = {'get_car_total':0,'get_car_items':0 }
+            carItems = order['get_car_items']
+    product = Product.objects.get(id = id)
+
+    return render(request,'store/mas.html',{'product':product,'carItems':carItems})
+
 def registro(request):
     
     data ={
