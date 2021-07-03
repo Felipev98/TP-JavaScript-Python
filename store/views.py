@@ -17,8 +17,9 @@ def store(request):
         order = {'get_car_total':0,'get_car_items':0 }
         carItems = order['get_car_items']
 
-    products = Product.objects.all()
-    context = {'products':products, 'carItems': carItems}
+    products = Product.objects.all()[:3]
+    all_products= Product.objects.all()[3:10]
+    context = {'products':products, 'carItems': carItems, 'all_products':all_products}
     return render(request,'store/store.html',context)
 
 def category(request,cats):

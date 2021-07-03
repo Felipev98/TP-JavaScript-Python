@@ -5,6 +5,7 @@
 <div>
     <h2>Lista de productos: {{searched}}</h2>
 {% if searched %}
+    <div class="container">
     <div class="row">
         {% for product in search %}
         <div class="col-lg-4">
@@ -21,6 +22,7 @@
         {% endfor %}
     </div>
     </div>
+</div>
 {% else %}
 <p>Lo sentimos, no tenemos ese producto</p>
 {% endif %}    

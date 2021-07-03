@@ -1,15 +1,22 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-
-<div class="col-lg-4">
+<div class="container">
+<div class="col-lg-4 mx-auto">
     <img class="thumbnail" src="{{product.img.url}}" alt="">
     <div class="box-element product">
         <h6><strong>{{product.name}}</strong></h6>
+        <div class="description">
         <p>{{product.description}}</p>
-        <hr>
-        <button data-product={{product.id}} data-action="add" class="btn btn-warning add-btn update-car">Agregar al carrito</button>
-        <span>${{product.price | floatformat:2}}</span>
     </div>
+        <div class="botones-card">
+
+            <button data-product={{product.id}} data-action="add" class="btn btn-warning add-btn update-car">Agregar al carrito</button>
+            <div class="precio">
+                <span>${{product.price | floatformat:2}}</span>
+
+            </div>
+        </div>
+</div>
 </div>
 {% endblock content %}

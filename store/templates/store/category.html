@@ -1,7 +1,7 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-    <div>
+    <div class="container">
     <h2>{{cats}}</h2>
     {% for product in category_foods  %}
     <div class="col-lg-4">
@@ -15,5 +15,6 @@
         <span>${{product.price | floatformat:2}}</span>
     </div>
     </div>
+</div>
 {% endfor %}
 {% endblock content %}
