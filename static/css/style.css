@@ -3,6 +3,8 @@
 body{
 	background-color: #F1EEEE;
 }
+
+
 h1,h2,h3,h4,h5,h6{
 	color:hsl(0, 0%, 30%);
 }
@@ -94,12 +96,6 @@ font-family: 'Poppins', sans-serif;
 	background-color: #673AB7!important;
 }
 
-
-#cart-icon{
-	width:25px;
-	display: inline-block;
-	margin-left: 15px;
-}
 
 #cart-total{
 	display: block;
@@ -233,4 +229,69 @@ transition: all 0.3s ease-in-out;
 .car-detalles{
 	display: flex;
 	justify-content: space-around;
+}
+.asteriskField {
+    display: none;
+}
+.titulo-registro{
+	text-align: center;
+}
+.titulo-registro h2{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600;
+	border-bottom: 1px solid #575353;
+	padding-bottom: 1rem;
+
+}
+.card{
+	margin-top: 2rem;
+	border-radius: 1rem;
+	box-shadow: 0px 9px 22px -1px #575353;
+	margin-bottom: 2rem;
+
+}
+.botones-registro{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.botones-registro a{
+	margin-top: 1rem;
+}
+.titulo-acerca{
+text-align: center;
+margin-top: 2rem;
+}
+.titulo-acerca h2{
+	font-weight: 700;
+	color: black;
+	font-size: 2rem;
+}
+.texto-acerca{
+	width: 100%;
+	text-align: center;
+}
+.texto-acerca p{
+	font-family: 'Poppins', sans-serif;
+	padding-top: 1rem;
+	color: #575353;
+}
+.imagen-acerca{
+	background-image: url('../img/Jaguarete.jpg');
+	height: 25rem;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 80%;
+	margin: auto;
+	box-shadow: 0px 9px 22px -1px #575353;
+	margin-bottom: 1rem;
+}
+.titulo-search{
+	text-align: center;
+}
+i{
+color: white;
+font-size: 1.3rem;
+margin-left: 1rem;
 }

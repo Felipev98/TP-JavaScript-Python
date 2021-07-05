@@ -4,9 +4,10 @@ import json
 from .models import *
 from .forms import *
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required,permission_required
+from django.contrib.auth.decorators import permission_required
 
 def store(request):
+    category = Category.objects.all()
     if request.user.is_authenticated:
         customer = request.user.customer 
         order, created = Order.objects.get_or_create(customer=customer, complete=False )
@@ -19,16 +20,17 @@ def store(request):
 
     products = Product.objects.all()[:3]
     all_products= Product.objects.all()[3:10]
-    context = {'products':products, 'carItems': carItems, 'all_products':all_products}
+    context = {'products':products, 'carItems': carItems, 'all_products':all_products,'category':category}
     return render(request,'store/store.html',context)
 
 def category(request,cats):
+    category = Category.objects.all()
     category_foods = Product.objects.filter(category=cats)
-    return render(request, 'store/category.html',{'cats':cats,'category_foods':category_foods})
-
+    return render(request, 'store/category.html',{'cats':cats,'category_foods':category_foods,'category':category})
 
 def car(request):
     if request.user.is_authenticated:
+        category = Category.objects.all()
         customer = request.user.customer 
         order, created = Order.objects.get_or_create(customer=customer, complete=False )
         Items = order.orderitem_set.all()
@@ -40,26 +42,21 @@ def car(request):
         carItems = order.get_car_items
         carItems = order['get_car_items']
 
-    context = {'Items': Items, 'order': order, 'carItems':carItems }
+    context = {'Items': Items, 'order': order, 'carItems':carItems,'category':category }
     return render(request,'store/car.html',context)
 
+
 def search(request):
+    category = Category.objects.all()
     if request.method == "POST":
         searched = request.POST['searched']
         search = Product.objects.filter(name__contains=searched)
-        return render(request,'store/search.html',{'searched':searched,'search':search})
+        return render(request,'store/search.html',{'searched':searched,'search':search,'category':category})
     else:
         return render(request,'store/search.html')
-
-
-def checkout(request):
-    context = {}
-    return render(request,'store/checkout.html',context)
-def contacto(request):
-    context = {}
-    return render(request,'store/contacto.html',context)
 def acerca(request):
-    context = {}
+    category = Category.objects.all()
+    context = {'category':category}
     return render(request,'store/acerca.html',context)
 @permission_required('store.agregar')           
 def agregar(request):

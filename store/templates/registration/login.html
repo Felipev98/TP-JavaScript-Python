@@ -1,10 +1,13 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingreso al sistema</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <div class="container">
@@ -12,13 +15,17 @@
             <div class="col-12 col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-body">
-                        <h2>Ingresa tus datos</h2>
-                        <hr>
+                        <div class="titulo-registro">
+                            <h2>Ingresar</h2>
+                        </div>
                         <form action="" method="POST">
                             {% csrf_token %}
-                            {{ form }}
-                            <a href="{% url 'registro' %}">Registro</a>
-                            <input type="submit" placeholder="Ingresar">
+                            {{ form | crispy }}
+                            <div class="botones-registro">
+                                <input type="submit" placeholder="Ingresar" class="btn btn-success">
+                                <a href="{% url 'registro' %}" class="btn btn-danger">Registro</a>
+                            </div>
+                        
 
                         </form>
                     </div>

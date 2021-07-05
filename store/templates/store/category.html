@@ -2,19 +2,24 @@
 {% load static %}
 {% block content %}
     <div class="container">
-    <h2>{{cats}}</h2>
+        <div class="titulo-acerca">
+            <h2>{{cats}}</h2>
+        </div>
     {% for product in category_foods  %}
-    <div class="col-lg-4">
+    <div class="prueba">
+    <div class="col-lg-4 mx-auto">
     <img class="thumbnail" src="{{product.img.url}}" alt="">
     <div class="box-element product">
         <h6><strong>{{product.name}}</strong></h6>
+        <div class="description">
         <p>{{product.description}}</p>
-        <hr>
+    </div>
         <button data-product={{product.id}} data-action="add" class="btn btn-warning add-btn update-car">Agregar al carrito</button>
         <a href="#" class="btn btn-primary">Ver más</a>
         <span>${{product.price | floatformat:2}}</span>
     </div>
     </div>
 </div>
-{% endfor %}
+    {% endfor %}
+</div>
 {% endblock content %}
