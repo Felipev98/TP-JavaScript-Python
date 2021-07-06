@@ -14,9 +14,18 @@
         <div class="description">
         <p>{{product.description}}</p>
     </div>
-        <button data-product={{product.id}} data-action="add" class="btn btn-warning add-btn update-car">Agregar al carrito</button>
-        <a href="#" class="btn btn-primary">Ver más</a>
-        <span>${{product.price | floatformat:2}}</span>
+    {% if not perms.store.car %}
+        {% if user.is_authenticated %}
+            <button data-product={{product.id}} data-action="add" class="btn btn-warning add-btn update-car">Agregar al carrito</button>
+            <a href="{% url 'product_details' product.id %}" class="btn btn-primary">Ver más</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-warning">Agregar al carrito</a>
+        <a href="{% url 'login' %}" class="btn btn-primary">Ver más</a>
+        {% endif %}
+        <div class="precio">
+            <span>${{product.price | floatformat:2}}</span>
+        </div>
+    {% endif %}    
     </div>
     </div>
 </div>

@@ -1,19 +1,22 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-
+{% load crispy_forms_tags %}
         <div class="container">
         <div class="row">
-            <div class="card">
+            <div class="card mx-auto agregar">
                 <div class="card-body">
-                    <h2>Nuevo Producto</h2>
+                    <div class="titulo-registro">
+                        <h2>Nuevo Producto</h2>
+                    </div>
             <div class="col-12 col-md-6 offset-md-3">
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form }}
-                    <div class="d-flex justify-content-end"></div>
+                    {{ form | crispy }}
+                    <div class="boton--">
+                    <input type="submit" placeholder="Guardar" class="btn btn-success">
                     <input type="reset" placeholder="Cancelar" class="btn btn-danger">
-                    <input type="submit" placeholder="Guardar" class="btn btn-primary">
+                </div>
                 </form>
                 {{mensaje}}
             </div>

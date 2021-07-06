@@ -101,9 +101,9 @@ font-family: 'Poppins', sans-serif;
 	display: block;
 	text-align: center;
 	color:#fff;
-	background-color: red;
+	background-color: #d90303;
 	width: 20px;
-	height: 25px;
+	height: 22px;
 	border-radius: 50%;
 	font-size: 14px;
 }
@@ -162,7 +162,7 @@ font-family: 'Poppins', sans-serif;
 	font-weight: 600;
 }
 .footer{
-	margin-top: 2rem;
+	margin-top: 4rem;
 	padding: 2rem;
 	background-color: #1A0053;
 }
@@ -294,4 +294,14 @@ i{
 color: white;
 font-size: 1.3rem;
 margin-left: 1rem;
+}
+.boton--{
+	text-align: center;
+}
+
+.agregar{
+	width: 100%;
+}
+.table{
+margin-top: 2rem ;
 }

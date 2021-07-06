@@ -18,8 +18,8 @@ def store(request):
         order = {'get_car_total':0,'get_car_items':0 }
         carItems = order['get_car_items']
 
-    products = Product.objects.all()[:3]
-    all_products= Product.objects.all()[3:10]
+    products = Product.objects.order_by('-id')[:3]
+    all_products= Product.objects.order_by('-id')[3:10]
     context = {'products':products, 'carItems': carItems, 'all_products':all_products,'category':category}
     return render(request,'store/store.html',context)
 
@@ -141,13 +141,59 @@ def updateItem(request):
     product = Product.objects.get(id =productId)
     order, created = Order.objects.get_or_create(customer=customer, complete=False )
     orderItem, created = OrderItem.objects.get_or_create(order = order, product = product)
+    
     if action == 'add':
         orderItem.quantity = (orderItem.quantity + 1 )
     elif action == 'remove':
         orderItem.quantity = (orderItem.quantity - 1 )
+    elif action == 'remove_all':
+        orderItem.quantity = 0
     orderItem.save()
     if orderItem.quantity <= 0:
         orderItem.delete()
 
     return JsonResponse('Item was added', safe= False)
+
+def updateItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+
+    print('Action: ',action)
+    print('productId: ', productId)
+
+    customer = request.user.customer
+    product = Product.objects.get(id =productId)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False )
+    orderItem, created = OrderItem.objects.get_or_create(order = order, product = product)
+    
+    if action == 'add':
+        orderItem.quantity = (orderItem.quantity + 1 )
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1 )
+    elif action == 'remove_all':
+        orderItem.quantity = 0
+    orderItem.save()
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+
+    return JsonResponse('Item was added', safe= False)
+def clearCar(request):
+    data = json.loads(request.body)
+    action = data['action']
+
+    print('Action: ',action)
+
+    customer = request.user.customer
+    order, created = Order.objects.get_or_create(customer=customer, complete=False )
+    orderItem, created = OrderItem.objects.get_or_create(order = order)
+    
+    if action == 'remove_all':
+        orderItem.quantity = 0
+    orderItem.save()
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+
+    return JsonResponse('Item was added', safe= False)
+
 

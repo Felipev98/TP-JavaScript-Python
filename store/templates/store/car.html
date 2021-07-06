@@ -17,6 +17,7 @@
                 <th scope="col">Precio</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Total</th>
+                <th scope="col">Acción</th>
               </tr>
             </thead>
             <tbody>
@@ -26,23 +27,28 @@
                 <th scope="row"><img class="row-image" src="{{Item.product.img.url}}" alt=""></th>
                 <td>{{Item.product.name}}</td>
                 <td>{{Item.product.price | floatformat:2}}$</td>
+
                 <td> <p class="quantity">{{Item.quantity}}</p>
                     <div class="quantity">
                         <img data-product={{Item.product.id}} data-action="add" src="{% static 'img/flecha-arriba.png' %}" class="chg-quantity update-car" alt="">
                         <img data-product={{Item.product.id}} data-action="remove" src="{% static 'img/flecha-abajo.png' %}" class="chg-quantity update-car" alt="">
-    
-                    </div>
+
+                      </div>
                     <td>{{Item.get_total}}$</td>
+                    <td><button data-product={{Item.product.id}} data-action="remove_all" class="btn btn-danger update-car">Vaciar item</button></td>
 
                 </td>
                     
               </tr>
             </div>
-            </tbody>
-                {% endfor %}
 
+            </tbody>
+
+                {% endfor %}
           </table>
     </div>
+  </div>
+
 </div>
 </div>
 {% endblock content %}
