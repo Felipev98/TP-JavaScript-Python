@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container mx-auto">
-{% if searched %}
+{% if search %}
     <div class="titulo-acerca">
     <h2>Lista de productos: {{searched}}</h2>
     </div>
@@ -38,7 +38,14 @@
     </div>
 </div>
 {% else %}
-<p>Lo sentimos, no tenemos ese producto</p>
-{% endif %}    
+    <div class="texto-search">
+        <p>Lo sentimos, no tenemos ese producto</p>
+    </div>
+{% endif %}
+</div>
+
+<div class="margin-footer">
+    
+</div>    
 {% endblock content %}
 

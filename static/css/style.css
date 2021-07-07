@@ -1,18 +1,57 @@
-
+*{
+	scroll-behavior: smooth !important;
+}
 
 body{
 	background-color: #F1EEEE;
 }
 
-
-h1,h2,h3,h4,h5,h6{
-	color:hsl(0, 0%, 30%);
-}
 .navbar-dark .navbar-nav .nav-link {
 	font-family: 'Poppins', sans-serif;
 	font-size: 0.8rem;
 }
+/* Botón volver arriba */
+.boton-arriba-contenedor{
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+    width: 6.6rem;
+    height: 6.6rem;
+    z-index: -1;
 
+}
+.volver-arriba{
+    width: 0rem;
+    height: 0rem;
+    background-color: #FF9A16;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 50%;
+    transition: .2s;
+    transform: translate(-50%,50%);
+}
+.volver-arriba i{
+    position: absolute;
+    font-size: 1rem;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%,50%) scale(0);
+    color: white;
+    transition: .2s;
+}
+.showu{
+    z-index: 10;
+    transform: translate(100px);
+}
+.showu .volver-arriba{
+    animation: popop .3s ease-in-out;
+    width: 4rem;
+    height: 4rem;
+    z-index: 11;
+}
+.showu i{
+    transform: translate(-50%,-50%) scale(1);
+}
 .navbar-dark .navbar-brand{
 	font-family: 'Poppins', sans-serif;
 	font-weight: 700;
@@ -162,10 +201,16 @@ font-family: 'Poppins', sans-serif;
 	font-weight: 600;
 }
 .footer{
-	margin-top: 4rem;
+	margin-top: 5%;
 	padding: 2rem;
 	background-color: #1A0053;
 }
+.margin-footer{
+	margin-top: 11.5rem;
+}
+
+
+
 .texto-footer{
 display: flex;
 flex-direction: column;
@@ -236,6 +281,17 @@ transition: all 0.3s ease-in-out;
 .titulo-registro{
 	text-align: center;
 }
+.titulo-car{
+margin: auto;
+}
+.titulo-car p{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 700;
+	padding-bottom: 1rem;
+	font-size: 0.6;
+	color: #673AB7;
+}
+
 .titulo-registro h2{
 	font-family: 'Poppins', sans-serif;
 	font-weight: 600;
@@ -243,6 +299,8 @@ transition: all 0.3s ease-in-out;
 	padding-bottom: 1rem;
 
 }
+
+
 .card{
 	margin-top: 2rem;
 	border-radius: 1rem;
@@ -290,8 +348,10 @@ margin-top: 2rem;
 .titulo-search{
 	text-align: center;
 }
-i{
-color: white;
+
+#car-icon a{
+	margin-left: 1rem;
+	color: white;
 font-size: 1.3rem;
 margin-left: 1rem;
 }
@@ -304,4 +364,66 @@ margin-left: 1rem;
 }
 .table{
 margin-top: 2rem ;
+}
+.finalizar-compra{
+margin: auto;
+}
+
+/* Media Queries */
+
+@media screen and (max-width:454px) {
+	.titulo{
+		width: 20rem;
+	}
+	.col-lg-4:hover{
+		transform: scale(0.9);
+	}
+	.texto-banner span{
+		font-size: 1.4rem;
+	}
+	#boton-cerrar{
+	margin-left: 0;
+	margin-top: 1rem;	
+	}
+	#car-icon a{
+		margin-left: 0rem;
+
+	}
+	.margin-footer{
+		margin-top: 20rem;
+	}
+}
+@media screen and (min-width:500px) and (max-width:1023px) {
+	.margin-footer{
+		margin-top: 32rem;
+	}
+}
+@media  (max-width:1024px) {
+	.margin-footer{
+		margin-top: 52rem;
+	}
+}
+
+@media screen and (max-width:1023px) {
+
+#boton-cerrar{
+	margin-left: 0;
+	margin-top: 1rem;	
+	}
+	#car-icon a{
+		margin-left: 0;
+	}
+
+}
+.texto-search{
+	text-align: center;
+	padding-top: 2rem;
+	margin-bottom: 62rem;
+}
+.texto-search p{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 700;
+	padding-bottom: 1rem;
+	font-size: 0.6;
+	color: #673AB7;
 }
